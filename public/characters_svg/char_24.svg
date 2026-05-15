@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg_24" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#32CD32" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#f0f0f0"/>
+    </radialGradient>
+    <radialGradient id="body_24" cx="40%" cy="30%">
+      <stop offset="0%" stop-color="#32CD32"/>
+      <stop offset="100%" stop-color="#008000"/>
+    </radialGradient>
+    <filter id="shadow_24">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景円 -->
+  <circle cx="256" cy="256" r="240" fill="url(#bg_24)"/>
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#cccccc" stroke-width="4" opacity="0.4"/>
+
+  <!-- キャラクター本体 -->
+  <g filter="url(#shadow_24)">
+    
+        <ellipse cx="256" cy="310" rx="130" ry="120" fill="url(#body_24)"/>
+    
+        <circle cx="256" cy="200" r="110" fill="url(#body_24)"/>
+    
+        <ellipse cx="256" cy="330" rx="85" ry="80" fill="#FFFAF0" opacity="0.85"/>
+    
+        <ellipse cx="145" cy="330" rx="30" ry="45" fill="url(#body_24)" transform="rotate(-15,145,330)"/>
+        <ellipse cx="367" cy="330" rx="30" ry="45" fill="url(#body_24)" transform="rotate(15,367,330)"/>
+    
+        <ellipse cx="200" cy="420" rx="40" ry="22" fill="url(#body_24)"/>
+        <ellipse cx="312" cy="420" rx="40" ry="22" fill="url(#body_24)"/>
+    
+            <circle cx="185" cy="130" r="30" fill="url(#body_24)"/>
+            <circle cx="327" cy="130" r="30" fill="url(#body_24)"/>
+        
+    
+        <ellipse cx="180" cy="220" rx="22" ry="26" fill="#333"/>
+        <ellipse cx="180" cy="216" rx="14" ry="16" fill="#555"/>
+        <ellipse cx="174" cy="210" rx="7" ry="8" fill="white"/>
+        <ellipse cx="186" cy="218" rx="3" ry="4" fill="white" opacity="0.6"/>
+        <ellipse cx="332" cy="220" rx="22" ry="26" fill="#333"/>
+        <ellipse cx="332" cy="216" rx="14" ry="16" fill="#555"/>
+        <ellipse cx="326" cy="210" rx="7" ry="8" fill="white"/>
+        <ellipse cx="338" cy="218" rx="3" ry="4" fill="white" opacity="0.6"/>
+    
+    
+        <ellipse cx="150" cy="260" rx="25" ry="16" fill="#FF9999" opacity="0.5"/>
+        <ellipse cx="362" cy="260" rx="25" ry="16" fill="#FF9999" opacity="0.5"/>
+    
+    
+        <ellipse cx="256" cy="255" rx="8" ry="6" fill="#333"/>
+    
+    
+        <path d="M235 270 Q256 295 277 270" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+    
+  </g>
+
+  
+</svg>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg_77" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#FF69B4" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </radialGradient>
+    <radialGradient id="body_77" cx="40%" cy="30%">
+      <stop offset="0%" stop-color="#FF69B4"/>
+      <stop offset="100%" stop-color="#DA70D6"/>
+    </radialGradient>
+    <filter id="shadow_77">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景円 -->
+  <circle cx="256" cy="256" r="240" fill="url(#bg_77)"/>
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#9370DB" stroke-width="4" opacity="0.4"/>
+
+  <!-- キャラクター本体 -->
+  <g filter="url(#shadow_77)">
+    
+            <ellipse cx="140" cy="250" rx="90" ry="70" fill="#FF69B4" opacity="0.7" transform="rotate(-15,140,250)"/>
+            <ellipse cx="145" cy="340" rx="65" ry="55" fill="#DA70D6" opacity="0.6" transform="rotate(-10,145,340)"/>
+        
+            <ellipse cx="372" cy="250" rx="90" ry="70" fill="#FF69B4" opacity="0.7" transform="rotate(15,372,250)"/>
+            <ellipse cx="367" cy="340" rx="65" ry="55" fill="#DA70D6" opacity="0.6" transform="rotate(10,367,340)"/>
+        <ellipse cx="256" cy="300" rx="45" ry="90" fill="url(#body_77)"/><circle cx="256" cy="200" r="60" fill="url(#body_77)"/>
+            <path d="M230 150 Q210 90 200 70" fill="none" stroke="#DA70D6" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="200" cy="70" r="8" fill="#FF69B4"/>
+            <path d="M282 150 Q302 90 312 70" fill="none" stroke="#DA70D6" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="312" cy="70" r="8" fill="#FF69B4"/>
+        <text x="220" y="130" font-size="32">👑</text>
+    
+        <ellipse cx="180" cy="220" rx="22" ry="26" fill="#333"/>
+        <ellipse cx="180" cy="216" rx="14" ry="16" fill="#555"/>
+        <ellipse cx="174" cy="210" rx="7" ry="8" fill="white"/>
+        <ellipse cx="186" cy="218" rx="3" ry="4" fill="white" opacity="0.6"/>
+        <ellipse cx="332" cy="220" rx="22" ry="26" fill="#333"/>
+        <ellipse cx="332" cy="216" rx="14" ry="16" fill="#555"/>
+        <ellipse cx="326" cy="210" rx="7" ry="8" fill="white"/>
+        <ellipse cx="338" cy="218" rx="3" ry="4" fill="white" opacity="0.6"/>
+    
+    
+        <ellipse cx="150" cy="260" rx="25" ry="16" fill="#FF9999" opacity="0.5"/>
+        <ellipse cx="362" cy="260" rx="25" ry="16" fill="#FF9999" opacity="0.5"/>
+    
+    
+        <ellipse cx="256" cy="255" rx="8" ry="6" fill="#333"/>
+    
+    
+        <path d="M235 270 Q256 295 277 270" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+    
+  </g>
+
+  
+            <text x="60" y="70" font-size="36" opacity="0.7">✨</text>
+            <text x="410" y="90" font-size="30" opacity="0.6">⭐</text>
+            <text x="80" y="440" font-size="28" opacity="0.5">💫</text>
+            <text x="400" y="420" font-size="32" opacity="0.6">✨</text>
+        
+</svg>
