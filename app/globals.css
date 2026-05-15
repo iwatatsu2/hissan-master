@@ -14,3 +14,345 @@ body {
   font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* ====== カード共通 ====== */
+.card-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.card-inner {
+  position: relative;
+  padding: 20px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+/* カード枠デコレーション */
+.card-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  z-index: 0;
+}
+
+/* ====== ★ ノーマル ====== */
+.card-N {
+  border: 3px solid #d1d5db;
+  background: linear-gradient(135deg, #fefefe 0%, #f3f4f6 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ====== ★★ レア ====== */
+.card-R {
+  border: 3px solid #60a5fa;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #eff6ff 100%);
+  box-shadow: 0 4px 16px rgba(96, 165, 250, 0.3);
+}
+.card-R::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(96, 165, 250, 0.08) 50%,
+    transparent 70%
+  );
+  animation: card-shine 3s ease-in-out infinite;
+  z-index: 0;
+  border-radius: 16px;
+}
+
+/* ====== ★★★ スーパーレア ====== */
+.card-SR {
+  border: 3px solid #a855f7;
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 30%, #ede9fe 60%, #faf5ff 100%);
+  box-shadow:
+    0 4px 20px rgba(168, 85, 247, 0.3),
+    0 0 40px rgba(168, 85, 247, 0.1);
+}
+.card-SR::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(168, 85, 247, 0.12) 40%,
+    rgba(236, 72, 153, 0.08) 60%,
+    transparent 80%
+  );
+  animation: card-shine 2.5s ease-in-out infinite;
+  z-index: 0;
+  border-radius: 16px;
+}
+
+/* ====== ★★★★ ウルトラレア ====== */
+.card-UR {
+  border: 3px solid transparent;
+  background:
+    linear-gradient(135deg, #fefce8, #fef3c7, #fde68a, #fef3c7, #fefce8) padding-box,
+    linear-gradient(135deg, #f59e0b, #eab308, #f59e0b, #d97706) border-box;
+  box-shadow:
+    0 4px 24px rgba(245, 158, 11, 0.4),
+    0 0 60px rgba(245, 158, 11, 0.15),
+    inset 0 0 30px rgba(245, 158, 11, 0.05);
+}
+.card-UR::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    #f59e0b,
+    #ec4899,
+    #8b5cf6,
+    #3b82f6,
+    #10b981,
+    #eab308,
+    #f59e0b
+  );
+  z-index: -1;
+  border-radius: 18px;
+  animation: card-rainbow-border 4s linear infinite;
+}
+.card-UR::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 10%,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 215, 0, 0.15) 50%,
+    rgba(255, 255, 255, 0.4) 70%,
+    transparent 90%
+  );
+  animation: card-shine-fast 2s ease-in-out infinite;
+  z-index: 0;
+  border-radius: 16px;
+}
+
+/* ホログラム風オーバーレイ（UR） */
+.holo-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 0, 0, 0.03) 0px,
+      rgba(255, 127, 0, 0.03) 2px,
+      rgba(255, 255, 0, 0.03) 4px,
+      rgba(0, 255, 0, 0.03) 6px,
+      rgba(0, 0, 255, 0.03) 8px,
+      rgba(148, 0, 211, 0.03) 10px,
+      transparent 12px
+    );
+  mix-blend-mode: screen;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 16px;
+  animation: holo-shift 3s linear infinite;
+}
+
+/* キラキラパーティクル */
+.sparkle-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 3;
+}
+.sparkle {
+  position: absolute;
+  font-size: 14px;
+  animation: sparkle-float 2s ease-in-out infinite;
+}
+
+/* Emoji表示エリア */
+.card-emoji {
+  font-size: 72px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  position: relative;
+  z-index: 1;
+}
+.card-emoji-sr {
+  animation: emoji-glow-purple 2s ease-in-out infinite;
+}
+.card-emoji-ur {
+  font-size: 80px;
+  animation: emoji-glow-gold 1.5s ease-in-out infinite;
+}
+
+/* カード名 */
+.card-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+.card-name-ur {
+  background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24, #f59e0b, #d97706);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 2s linear infinite;
+}
+
+/* レアリティ表示 */
+.card-rarity {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 2px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* セリフ吹き出し */
+.card-speech {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+}
+.card-speech-n { background: rgba(255,255,255,0.6); color: #4b5563; }
+.card-speech-r { background: rgba(219,234,254,0.7); color: #1e40af; }
+.card-speech-sr { background: rgba(243,232,255,0.7); color: #6b21a8; }
+.card-speech-ur { background: rgba(254,243,199,0.8); color: #92400e; border: 1px solid rgba(217,119,6,0.3); }
+
+/* ガチャ出現アニメーション */
+.card-reveal {
+  animation: card-appear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.card-reveal-ur {
+  animation: card-appear-ur 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* NEW! バッジ */
+.new-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+  animation: badge-bounce 1s ease-in-out infinite;
+}
+
+/* ====== Animations ====== */
+@keyframes card-shine {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+@keyframes card-shine-fast {
+  0%, 100% { transform: translateX(-120%); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  50% { transform: translateX(120%); opacity: 0.8; }
+}
+@keyframes card-rainbow-border {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+@keyframes holo-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 120px; }
+}
+@keyframes sparkle-float {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+  50% { opacity: 1; transform: translateY(-10px) scale(1.2); }
+}
+@keyframes emoji-glow-purple {
+  0%, 100% { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15)); }
+  50% { filter: drop-shadow(0 4px 16px rgba(168,85,247,0.4)) drop-shadow(0 0 8px rgba(168,85,247,0.2)); }
+}
+@keyframes emoji-glow-gold {
+  0%, 100% { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15)); transform: scale(1); }
+  50% { filter: drop-shadow(0 4px 20px rgba(245,158,11,0.5)) drop-shadow(0 0 12px rgba(245,158,11,0.3)); transform: scale(1.05); }
+}
+@keyframes text-shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes card-appear {
+  0% { opacity: 0; transform: scale(0.3) rotateY(180deg); }
+  60% { transform: scale(1.05) rotateY(0deg); }
+  100% { opacity: 1; transform: scale(1) rotateY(0deg); }
+}
+@keyframes card-appear-ur {
+  0% { opacity: 0; transform: scale(0.2) rotateY(360deg); }
+  40% { opacity: 1; transform: scale(1.15) rotateY(0deg); }
+  60% { transform: scale(0.95); }
+  80% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+@keyframes badge-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ガチャ演出 背景フラッシュ */
+.ur-flash {
+  animation: bg-flash 0.6s ease-out;
+}
+@keyframes bg-flash {
+  0% { background-color: rgba(255, 215, 0, 0.6); }
+  100% { background-color: transparent; }
+}
+.sr-flash {
+  animation: bg-flash-purple 0.5s ease-out;
+}
+@keyframes bg-flash-purple {
+  0% { background-color: rgba(168, 85, 247, 0.3); }
+  100% { background-color: transparent; }
+}
+
+/* 図鑑ミニカード */
+.mini-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.mini-card:active {
+  transform: scale(0.93);
+}
+.mini-card-r {
+  box-shadow: 0 2px 8px rgba(96, 165, 250, 0.3);
+  border: 2px solid rgba(96, 165, 250, 0.4);
+}
+.mini-card-sr {
+  box-shadow: 0 2px 10px rgba(168, 85, 247, 0.3);
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  animation: mini-glow-sr 3s ease-in-out infinite;
+}
+.mini-card-ur {
+  box-shadow: 0 2px 12px rgba(245, 158, 11, 0.4);
+  border: 2px solid rgba(245, 158, 11, 0.5);
+  animation: mini-glow-ur 2s ease-in-out infinite;
+}
+@keyframes mini-glow-sr {
+  0%, 100% { box-shadow: 0 2px 10px rgba(168, 85, 247, 0.3); }
+  50% { box-shadow: 0 2px 16px rgba(168, 85, 247, 0.5); }
+}
+@keyframes mini-glow-ur {
+  0%, 100% { box-shadow: 0 2px 12px rgba(245, 158, 11, 0.4); }
+  50% { box-shadow: 0 2px 20px rgba(245, 158, 11, 0.7); }
+}

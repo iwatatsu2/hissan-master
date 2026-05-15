@@ -5,6 +5,14 @@ import Link from 'next/link';
 import { CHARACTERS } from '@/lib/characters';
 import { SaveData } from '@/lib/types';
 import { loadData } from '@/lib/storage';
+import CharacterCard from '@/components/CharacterCard';
+
+function miniCardClass(rarity: string) {
+  if (rarity === '★★★★') return 'mini-card mini-card-ur';
+  if (rarity === '★★★') return 'mini-card mini-card-sr';
+  if (rarity === '★★') return 'mini-card mini-card-r';
+  return 'mini-card';
+}
 
 export default function CollectionPage() {
   const [data, setData] = useState<SaveData | null>(null);
@@ -21,13 +29,6 @@ export default function CollectionPage() {
   const pct = Math.round((collected / total) * 100);
 
   const selectedChar = selected !== null ? CHARACTERS.find((c) => c.id === selected) : null;
-
-  const rarityColor = (r: string) => {
-    if (r === '★★★★') return 'text-yellow-500';
-    if (r === '★★★') return 'text-purple-500';
-    if (r === '★★') return 'text-blue-500';
-    return 'text-gray-400';
-  };
 
   return (
     <div className="min-h-dvh bg-gradient-to-b from-green-50 to-blue-50 p-4">
@@ -55,14 +56,8 @@ export default function CollectionPage() {
 
         {/* 選択カード詳細 */}
         {selectedChar && data.collectedIds.includes(selectedChar.id) && (
-          <div
-            className={`bg-gradient-to-br ${selectedChar.color} rounded-2xl shadow-lg p-4 mb-4 text-center`}
-            onClick={() => setSelected(null)}
-          >
-            <p className="text-5xl mb-2">{selectedChar.emoji}</p>
-            <p className="text-xl font-bold text-gray-800">{selectedChar.name}</p>
-            <p className={`font-bold ${rarityColor(selectedChar.rarity)}`}>{selectedChar.rarity}</p>
-            <p className="text-gray-600 text-sm mt-1">「{selectedChar.line}」</p>
+          <div className="mb-4" onClick={() => setSelected(null)}>
+            <CharacterCard character={selectedChar} />
           </div>
         )}
 
@@ -73,10 +68,10 @@ export default function CollectionPage() {
             return (
               <button
                 key={char.id}
-                onClick={() => setSelected(char.id)}
-                className={`aspect-square rounded-xl flex items-center justify-center text-3xl transition
+                onClick={() => owned && setSelected(char.id)}
+                className={`aspect-square rounded-xl flex items-center justify-center text-3xl
                   ${owned
-                    ? `bg-gradient-to-br ${char.color} shadow hover:scale-110`
+                    ? `bg-gradient-to-br ${char.color} ${miniCardClass(char.rarity)}`
                     : 'bg-gray-200'
                   }
                   ${selected === char.id ? 'ring-2 ring-purple-500 scale-110' : ''}`}
