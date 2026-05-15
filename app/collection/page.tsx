@@ -76,7 +76,11 @@ export default function CollectionPage() {
                   }
                   ${selected === char.id ? 'ring-2 ring-purple-500 scale-110' : ''}`}
               >
-                {owned ? char.emoji : '❓'}
+                {owned ? (
+                  char.image ? (
+                    <img src={char.image} alt={char.name} className="w-full h-full object-contain p-0.5" draggable={false} />
+                  ) : char.emoji
+                ) : '❓'}
               </button>
             );
           })}

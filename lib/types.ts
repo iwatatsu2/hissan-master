@@ -7,6 +7,7 @@ export interface Character {
   rarity: Rarity;
   line: string; // セリフ
   color: string; // カード背景グラデーション
+  image?: string; // イラスト画像パス（あれば優先表示）
 }
 
 export interface SaveData {

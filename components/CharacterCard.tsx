@@ -91,10 +91,21 @@ export default function CharacterCard({ character, isNew, revealed }: Props) {
           }}
         />
 
-        {/* Emoji */}
-        <div className={`card-emoji ${isSR ? 'card-emoji-sr' : ''} ${isUR ? 'card-emoji-ur' : ''}`}>
-          {character.emoji}
-        </div>
+        {/* キャラクターイラスト */}
+        {character.image ? (
+          <div className={`relative ${isSR ? 'card-emoji-sr' : ''} ${isUR ? 'card-emoji-ur' : ''}`}>
+            <img
+              src={character.image}
+              alt={character.name}
+              className="w-36 h-36 object-contain"
+              draggable={false}
+            />
+          </div>
+        ) : (
+          <div className={`card-emoji ${isSR ? 'card-emoji-sr' : ''} ${isUR ? 'card-emoji-ur' : ''}`}>
+            {character.emoji}
+          </div>
+        )}
 
         {/* 名前 */}
         <div className={`card-name ${isUR ? 'card-name-ur' : ''}`}
