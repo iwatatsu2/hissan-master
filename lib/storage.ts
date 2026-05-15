@@ -14,6 +14,8 @@ const DEFAULT_DATA: SaveData = {
   todayCorrect: 0,
   todayAttempts: 0,
   todayDate: today(),
+  bossStage: 1,
+  bossDefeated: [],
 };
 
 export function loadData(): SaveData {

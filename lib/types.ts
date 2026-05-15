@@ -20,6 +20,8 @@ export interface SaveData {
   todayCorrect: number;
   todayAttempts: number;
   todayDate: string;
+  bossStage: number; // 現在のボスステージ（1〜）
+  bossDefeated: number[]; // 倒したボスID
 }
 
 export type Operation = 'add' | 'sub';

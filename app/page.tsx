@@ -83,6 +83,13 @@ export default function HomePage() {
           </Link>
 
           <Link
+            href="/battle"
+            className="bg-gradient-to-r from-red-500 to-orange-500 text-white text-2xl font-bold py-5 rounded-2xl shadow-lg text-center active:scale-95 transition"
+          >
+            ⚔️ ボスバトル！
+          </Link>
+
+          <Link
             href="/gacha"
             className="bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-2xl font-bold py-5 rounded-2xl shadow-lg text-center active:scale-95 transition"
           >

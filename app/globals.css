@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* ボスシェイクアニメーション */
+@keyframes boss-shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-8px) rotate(-2deg); }
+  30% { transform: translateX(8px) rotate(2deg); }
+  50% { transform: translateX(-6px) rotate(-1deg); }
+  70% { transform: translateX(6px) rotate(1deg); }
+  90% { transform: translateX(-3px); }
+}
+.boss-shake {
+  animation: boss-shake 0.5s ease-in-out;
+}
+
 /* number input のスピナーを非表示 */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
