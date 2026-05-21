@@ -22,6 +22,7 @@ export interface SaveData {
   todayDate: string;
   bossStage: number; // 現在のボスステージ（1〜）
   bossDefeated: number[]; // 倒したボスID
+  bossCards: number[]; // 獲得したボスカードID
 }
 
 export type Operation = 'add' | 'sub';

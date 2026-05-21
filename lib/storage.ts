@@ -16,6 +16,7 @@ const DEFAULT_DATA: SaveData = {
   todayDate: today(),
   bossStage: 1,
   bossDefeated: [],
+  bossCards: [],
 };
 
 export function loadData(): SaveData {
@@ -23,7 +24,11 @@ export function loadData(): SaveData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_DATA;
-    const data: SaveData = JSON.parse(raw);
+    const data: SaveData = { ...DEFAULT_DATA, ...JSON.parse(raw) };
+    // 古いデータにボス関連フィールドがない場合の補完
+    if (!Array.isArray(data.bossDefeated)) data.bossDefeated = [];
+    if (!Array.isArray(data.bossCards)) data.bossCards = [];
+    if (!data.bossStage) data.bossStage = 1;
     // 日付が変わったらリセット
     if (data.todayDate !== today()) {
       data.todayCorrect = 0;

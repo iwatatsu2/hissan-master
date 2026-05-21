@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Problem, Operation, SaveData } from '@/lib/types';
 import { loadData, saveData } from '@/lib/storage';
 import { getBoss, BOSSES } from '@/lib/bosses';
+import { BOSS_REWARD_CARDS, getBossCard, BossCard } from '@/lib/boss-cards';
 
 function generateProblem(stage: number): Problem {
   // ステージが上がると難易度UP
@@ -43,6 +44,8 @@ export default function BattlePage() {
   const [hitMsg, setHitMsg] = useState('');
   const [shakeClass, setShakeClass] = useState('');
   const [selectedStage, setSelectedStage] = useState(1);
+  const [rewardCard, setRewardCard] = useState<BossCard | null>(null);
+  const [showCardReveal, setShowCardReveal] = useState(false);
 
   useEffect(() => {
     const d = loadData();
@@ -100,8 +103,20 @@ export default function BattlePage() {
         if (selectedStage >= newData.bossStage && selectedStage < BOSSES.length) {
           newData.bossStage = selectedStage + 1;
         }
+        // ボスカード報酬: まだ持っていないカードからランダムに1枚
+        const candidateIds = (BOSS_REWARD_CARDS[boss.id] || []).filter(
+          cid => !newData.bossCards.includes(cid)
+        );
+        let earnedCard: BossCard | null = null;
+        if (candidateIds.length > 0) {
+          const wonId = candidateIds[Math.floor(Math.random() * candidateIds.length)];
+          newData.bossCards = [...newData.bossCards, wonId];
+          earnedCard = getBossCard(wonId) || null;
+        }
         saveData(newData);
         setData(newData);
+        setRewardCard(earnedCard);
+        setShowCardReveal(!!earnedCard);
         setTimeout(() => setPhase('victory'), 800);
       } else {
         setPhase('hit');
@@ -356,6 +371,31 @@ export default function BattlePage() {
             <div className="bg-yellow-400 rounded-2xl px-6 py-4 shadow-lg">
               <p className="text-yellow-900 font-bold text-xl">🪙 +{boss.reward.coins} コイン GET！</p>
             </div>
+
+            {/* カード獲得演出 */}
+            {showCardReveal && rewardCard && (
+              <div className="relative">
+                <div className="absolute -inset-4 bg-yellow-300/30 rounded-3xl blur-xl animate-pulse" />
+                <div className="relative bg-gradient-to-b from-yellow-900/80 to-amber-900/80 rounded-2xl p-4 border-2 border-yellow-400 shadow-2xl">
+                  <p className="text-yellow-300 font-bold text-lg mb-2">🃏 レアカード GET！</p>
+                  <div className="w-40 h-56 mx-auto rounded-xl overflow-hidden shadow-lg border-2 border-yellow-400 card-reveal">
+                    <img
+                      src={rewardCard.image}
+                      alt={rewardCard.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-white font-bold mt-2">{rewardCard.name}</p>
+                  <p className="text-yellow-400 text-sm">{rewardCard.rarity}</p>
+                </div>
+              </div>
+            )}
+            {!showCardReveal && rewardCard === null && (
+              <div className="bg-white/10 rounded-xl px-4 py-2">
+                <p className="text-white/60 text-sm">このボスのカードはすべて持っているよ！</p>
+              </div>
+            )}
+
             <div className="space-y-3 w-full max-w-xs">
               {selectedStage < BOSSES.length && (
                 <button
