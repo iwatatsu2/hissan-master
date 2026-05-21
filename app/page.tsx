@@ -89,6 +89,15 @@ export default function HomePage() {
             ⚔️ ボスバトル！
           </Link>
 
+          {data.bossCards.length >= 3 && (
+            <Link
+              href="/card-battle"
+              className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-2xl font-bold py-5 rounded-2xl shadow-lg text-center active:scale-95 transition"
+            >
+              🃏 カードバトル！
+            </Link>
+          )}
+
           <Link
             href="/gacha"
             className="bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-2xl font-bold py-5 rounded-2xl shadow-lg text-center active:scale-95 transition"
