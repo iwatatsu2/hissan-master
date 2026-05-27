@@ -7,7 +7,7 @@ import { pullGacha } from '@/lib/characters';
 import { loadData, saveData } from '@/lib/storage';
 import CharacterCard from '@/components/CharacterCard';
 
-const GACHA_COST = 10;
+const GACHA_COST = 30;
 
 export default function GachaPage() {
   const [data, setData] = useState<SaveData | null>(null);

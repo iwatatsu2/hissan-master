@@ -63,7 +63,7 @@ export default function PracticePage() {
       newData.todayCorrect++;
       newData.streak++;
       if (newData.streak > newData.bestStreak) newData.bestStreak = newData.streak;
-      const bonus = newData.streak >= 5 ? 5 : newData.streak >= 3 ? 3 : 2;
+      const bonus = newData.streak >= 5 ? 3 : newData.streak >= 3 ? 2 : 1;
       newData.coins += bonus;
       setEarnedCoins(bonus);
       setCheer(CHEERS[Math.floor(Math.random() * CHEERS.length)]);

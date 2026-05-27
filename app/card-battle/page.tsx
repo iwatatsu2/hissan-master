@@ -48,7 +48,7 @@ function getCpuDeck(difficulty: Difficulty, playerCards: BossCard[]): BossCard[]
   return shuffled.slice(0, 3);
 }
 
-const REWARD_COINS: Record<Difficulty, number> = { easy: 15, normal: 30, hard: 50 };
+const REWARD_COINS: Record<Difficulty, number> = { easy: 5, normal: 10, hard: 20 };
 
 export default function CardBattlePage() {
   const [data, setData] = useState<SaveData | null>(null);
