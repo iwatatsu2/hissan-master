@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const LINKS = [
   { icon: '🌐', label: '公式サイト', url: 'https://driwatatsu.readdy.co' },
@@ -22,9 +23,7 @@ export default function AboutPage() {
 
         {/* ヘッダー */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 rounded-full bg-white border-2 border-gray-200 shadow-lg flex items-center justify-center text-4xl mx-auto">
-            👨‍⚕️
-          </div>
+          <Image src="/dr-iwatatsu.png" alt="Dr.いわたつ" width={80} height={80} className="rounded-full border-2 border-gray-200 shadow-lg mx-auto bg-white" />
           <h1 className="text-2xl font-bold text-gray-800 mt-3">Dr. いわたつ</h1>
           <p className="text-sm text-gray-500 mt-1">岩本 達也</p>
           <p className="text-sm text-gray-400 mt-1">糖尿病・内分泌 専門医・指導医</p>
