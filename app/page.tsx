@@ -29,7 +29,9 @@ export default function HomePage() {
         href="/about"
         className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-white border border-gray-200 px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-colors shadow-sm z-10"
       >
-        <Image src="/dr-iwatatsu.png" alt="Dr.いわたつ" width={20} height={20} className="rounded-full" />
+        <div className="w-5 h-5 rounded-full overflow-hidden">
+          <Image src="/dr-iwatatsu.png" alt="" width={40} height={40} className="w-full object-cover object-top" style={{ height: '200%' }} />
+        </div>
         <span>Dr.いわたつ</span>
       </Link>
 
